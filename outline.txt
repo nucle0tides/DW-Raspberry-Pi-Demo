@@ -1,0 +1,33 @@
+Participant Requirements 
+	-Partner
+	-Laptop w/ internet connection
+	-Putty (for Windows users) (Mac users can just SSH using the terminal)
+	-VNC Server (to actually see pi desktop)
+	-FileZilla (makes it easy to copy+paste pictures to create timelapse on a normal laptop)
+
+Workshop Overview: 
+
+Brief RPI + setup overview 
+	-"What did Gabby + exec do to allow you angels to play on these RaspberryPi's"
+SSH for command-line interface and/or VNC to see desktop. 
+
+SSH for Windows: 
+	-open Putty
+	-under Host Name box 
+		-piname.student.iastate.edu
+	-under Port box 
+		-22
+	-make sure connection type is SSH 
+	-Open 
+	-Accept (key)
+SSH for Mac
+	-Appilcations, Utilities, Terminal 
+	-SSH piname.student.iastate.edu
+	-Finish this 
+
+-To start VNC server: vncserver + enter 
+	-make note of New 'X' desktop is piname:2
+-Open VNC client 
+	-enter name you made note of, press enter
+	-enter password
+	-WOW, LOOK AT THAT BEAUTIFUL DESKTOP
