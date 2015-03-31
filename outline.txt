@@ -2,14 +2,14 @@ Participant Requirements
 	-Partner
 	-Laptop w/ internet connection
 	-Putty (for Windows users) (Mac users can just SSH using the terminal)
-	-VNC Server (to actually see pi desktop)
 	-FileZilla (makes it easy to copy+paste pictures to create timelapse on a normal laptop)
 
 Workshop Overview: 
 
 Brief RPI + setup overview 
 	-"What did Gabby + exec do to allow you angels to play on these RaspberryPi's"
-SSH for command-line interface and/or VNC to see desktop. 
+
+SSH for command-line interface. 
 
 SSH for Windows: 
 	-open Putty
@@ -20,14 +20,60 @@ SSH for Windows:
 	-make sure connection type is SSH 
 	-Open 
 	-Accept (key)
+	-username: pi 
+	-password: raspberry
 SSH for Mac
 	-Appilcations, Utilities, Terminal 
 	-SSH piname.student.iastate.edu
-	-Finish this 
+	-username: pi
+	-password: raspberry
 
+Get FileZilla ready
+-piname.student.iastate.edu
+-pi
+-raspberry
+-22
+
+SHORT VNC DEMO
 -To start VNC server: vncserver + enter 
 	-make note of New 'X' desktop is piname:2
 -Open VNC client 
 	-enter name you made note of, press enter
 	-enter password
 	-WOW, LOOK AT THAT BEAUTIFUL DESKTOP
+
+LETS TAKE OUR FIRST IMAGE
+in terminal 
+	cd Desktop
+		this will change the directory we're working in to our Desktop
+	'raspistill -o test.jpg'
+in FileZilla
+	navigate to the pi's Desktop
+	drag and drop the image to your Desktop within FileZilla
+
+OKAY WHAT OTHER THINGS CAN WE DO? 
+	'raspbistill -o test.jpg -ifx +image effect name+'
+	'raspistill -o test.jpg -ifx -posterise'
+	Try out a few others: 
+	http://www.raspberrypi.org/documentation/raspbian/applications/camera.md
+	sketch, oilpaint, solarize, posterise, hatch, etc
+
+Where does Python come into play? 
+	PICAMERA! Hip and fun API for controlling the raspberry pi camera, super useful, docs have tons of example code. 
+
+Let's try it out! 
+	in the terminal: 
+		type 'sudo nano test.py', this will create a new python file for us. 
+	in this text editor, right click to paste 
+		import time
+		import picamera
+
+		with picamera.PiCamera() as camera:
+		    camera.resolution = (1024, 768)
+		    camera.start_preview()
+		    # Camera warm-up time
+		    time.sleep(2)
+		    camera.capture('foo.jpg')
+	ctrl O to save, and ctrl X to exit out of it
+
+	With Python, we can do everything we did with bash. 
