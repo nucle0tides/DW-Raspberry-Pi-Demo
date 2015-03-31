@@ -17,8 +17,7 @@ The overall goal of this workshop is to familiarize ourselves with the Raspberry
 
 A sample of the final product will look something like this (betta fish harassment not guaranteed):
 
-
-	![Watson](http://gabbyortman.me/watson/watsonlapse.gif)
+![Watson](http://gabbyortman.me/watson/watsonlapse.gif)
 
 
 Here are some useful links: 
