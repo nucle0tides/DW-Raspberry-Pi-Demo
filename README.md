@@ -1,5 +1,4 @@
-#Digital Women
-###April 16, 2015
+#Digital Women, April 16, 2015
 ===
 
 Hi there, I hope you're pumped to fiddle around with a Raspberry Pi and take some pictures! 
