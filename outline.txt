@@ -76,4 +76,49 @@ Let's try it out!
 		    camera.capture('foo.jpg')
 	ctrl O to save, and ctrl X to exit out of it
 
-	With Python, we can do everything we did with bash. 
+Lets add an image effect now 
+	add 'camera.image_effect =' to your test.py  file
+	choose an image effect from (https://picamera.readthedocs.org/en/release-1.9/api.html#picamera.PiCamera.image_effect)
+	put that in " " after the equals sign
+	run the script
+
+	import time
+		import picamera
+
+		with picamera.PiCamera() as camera:
+		    camera.resolution = (1024, 768)
+		    camera.image-effect = none
+		    camera.start_preview()
+		    # Camera warm-up time
+		    time.sleep(2)
+		    camera.capture('foo.jpg')
+
+This is lame, Gabby. Let's do something cooler like take multiple images and put them all together to take a timelapse or something. 
+
+	So there are multiple ways one could create a timelapse. We're going to use the capture_continuous method and put all of the images into an online gif maker
+
+	Create a new file called timelapse.py, or whatever your heart desires. 
+
+	This code will take one image a minute for 60 minutes, i.e, 60 images. 
+		import picamera
+		import time
+
+		camera = picamera.PiCamera()
+		camera.resolution = (1280, 720)
+		time.sleep(1) # Camera warm-up time
+			for i, filename in enumerate(camera.capture_continuous('image{counter:02d}.jpg')):
+		        print('Captured %s' % filename)
+		        # Capture one image a minute
+		        time.sleep(60)
+		        if i == 59:
+		            break
+
+	For times sake, we're going to change this to one image every 3 or 5 seconds. 
+
+	Run the script. Make awkward small talk. 
+	Once completed, go to FileZilla, refresh, and copy all of the images somewhere safe (like a folder)
+
+	NOW LETS MAKE A GIF. 
+	Go to gifmaker.me and upload all of the images.
+
+	YOU DID IT, THANKS FOR PARTICIPATING.  

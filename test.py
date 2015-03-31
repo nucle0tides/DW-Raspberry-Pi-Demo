@@ -12,6 +12,8 @@ import picamera
 camera = picamera.PiCamera() 
 #set the resulotion 
 camera.resolution = (1024, 768)
+#add an image effect, set image_effect to none, or remove it if you don't want an effect
+camera.image_effect = "solarize"
 camera.start_preview()
 # Camera warm-up time
 time.sleep(2)
