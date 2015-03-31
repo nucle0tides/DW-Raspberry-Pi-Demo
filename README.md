@@ -1,4 +1,5 @@
-#Digital Women, April 16, 2015
+#Digital Women
+###April 16, 2015
 ===
 
 Hi there, I hope you're pumped to fiddle around with a Raspberry Pi and take some pictures! 
@@ -10,9 +11,18 @@ Hi there, I hope you're pumped to fiddle around with a Raspberry Pi and take som
 
 **Please** do this as it will make the workshop run a lot smoother. 
 
-The overall goal of this workshop is to familiarize ourselves with the Raspberry Pi, Raspberry Pi camera, using a terminal, and to get a taste of Python. 
+The overall goal of this workshop is to familiarize ourselves with the Raspberry Pi, Raspberry Pi camera, using a terminal, and to get a taste of Python. Feel free to look at the test code to get an idea of what we're going to be doing. 
 
 *Spoiler Alert* 
+
 A sample of the final product will look something like this (betta fish harassment not guaranteed):
+
+
 	![Watson](http://gabbyortman.me/watson/watsonlapse.gif)
 
+
+Here are some useful links: 
+
+- [Raspberry Pi Website](http://www.raspberrypi.org/)
+	- You will be able to find documentation for the Raspberry Pi and Raspberry Pi camera here. If you choose to get your own pi, READ THIS. 
+- [PiCamera Documentation](https://picamera.readthedocs.org/en/release-1.10/)
