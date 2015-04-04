@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; margin: 0; padding: 0;}
+      
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse a { 
+        color: #777872;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      } 
+      /* Two-column layout */
+      .left-column {
+        /*color: #777;*/
+        width: 50%;
+        float: left;
+      }
+      .right-column {
+        width: 50%;
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse
+
+# Raspberry Pi Workshop 
+##April 16, 2015
+###Gabby Ortman
+
+---
+class: middle, inverse
+# Getting Started 
+.center[##What is a Rapsberry Pi?
+] 
+
+>The Raspberry Pi is a low cost, credit-card sized computer that plugs into a computer monitor or TV, and uses a standard keyboard and mouse.
+
+.center[![](raspi.jpg)
+]
+---
+class: inverse
+#Getting Started
+.center[##What can you do with it?
+] 
+
+  A ton of things! 
+---
+class: inverse
+#Getting Started 
+.center[##How do you set it up?
+] 
+
+---
+class: inverse, center, middle
+#Now that we're acquainted, let's get started!
+
+---
+class:inverse
+.left-column[
+##Windows
+##Open up putty
+
+-In the 'hostname' box type: piname.student.iastate.edu
+
+-Press enter 
+
+-Accept key
+
+-Username: pi 
+
+-Password: raspberry
+
+-You're in!
+]
+
+.right-column[
+#Mac
+##Open your terminal
+
+-Appilcations, Utilities, Terminal 
+
+-Enter: SSH piname.student.iastate.edu
+
+-Username: pi
+
+-Password: raspberry
+]
+---
+class: inverse
+#One last thing. 
+##Open FileZilla
+Towards the top of the application window you should see:
+![](filezilla.png)
+
+In these boxes, please enter: 
+
+-piname.student.iastate.edu
+
+-pi
+
+-raspberry
+
+-22
+
+We'll use FileZilla to access our images. 
+
+---
+class: inverse
+#Let's take our first image!
+
+In the terminal type: 
+
+```bash
+cd Desktop 
+raspistill -o test.jpg
+```
+##Navigate to the Desktop in FileZilla
+Drag 'test.jpg' to your Computer's Desktop to transfer the image!
+
+---
+class: inverse
+#Awesome, what else can we do? 
+##From the terminal, we can control our camera just like any physical camera. 
+.center[###Let's add an image effect
+]
+```bash
+raspistill -o test.jpg -ifx -posterise
+```
+More options can be found [here](http://www.raspberrypi.org/documentation/raspbian/applications/camera.md).
+
+---
+class: inverse
+#Let's get Python involved now! 
+We will be using the PiCamera API to control our camera from now on. 
+
+In your terminal enter: 
+```bash
+sudo nano test.py
+```
+This will open up a little text editor. If you're used to Linux and a terminal and want to use a different one, go for it. 
+Use ctrl + o to save, and ctrl + x to exit the text editor. 
+``` python
+import time
+import picamera
+
+#create an instance of our camera 
+camera = picamera.PiCamera() 
+#set the resulotion 
+camera.resolution = (1024, 768)
+camera.start_preview()
+# Camera warm-up time
+time.sleep(2)
+#capture the image
+camera.capture('test.jpg')
+#close the camera
+camera.close()
+```
+---
+class:inverse
+#Run the script
+
+In the terminal: 
+
+```bash
+python test.py
+```
+Once the prompt returns, you can go to FileZilla to transfer and view the image we took! 
+
+---
+class: inverse
+#We can also add image effects, change the resolution, and more! 
+
+##Let's choose an image effect to add to our image. 
+You can find the image effect documentation [here](https://picamera.readthedocs.org/en/release-1.9/api.html#picamera.PiCamera.image_effect).
+
+``` python
+import time
+import picamera
+
+#create an instance of our camera 
+camera = picamera.PiCamera() 
+#set the resulotion 
+camera.resolution = (1024, 768)
+#ADD IMAGE EFFECT HERE
+camera.image_effect = "image effect name"
+camera.start_preview()
+# Camera warm-up time
+time.sleep(2)
+#capture the image
+camera.capture('test.jpg')
+#close the camera
+camera.close()
+```
+
+---
+class: inverse
+#Now that we've experimented a little bit, let's take a sequence of images. 
+To do so we're going to use the capture_continuous method and put all of the images into an online gif maker. 
+
+Create a new python file called 'timelapse.py'. 
+```Python
+import picamera
+import time
+
+camera = picamera.PiCamera()
+camera.resolution = (1280, 720)
+time.sleep(1) # Camera warm-up time
+  for i, filename in enumerate(camera.capture_continuous('image{counter:02d}.jpg')):
+        print('Captured %s' % filename)
+        # Capture one image a minute
+        #decrease the time.sleep argument to take more images
+        time.sleep(3)
+        #this conditional will stop the iterator once 60 images have been taken
+        if i == 59:
+            break
+```
+Whitespace in python is VERY IMPORTANT. Don't add any extra spaces or your code will not work.
+
+---
+class: inverse
+#Let's put everything into a gif! 
+
+- First, transfer your images from the pi to the camera.
+
+- Open up gifmaker.me in your browser and upload your images. 
+
+- Once uploaded, click 'create gif animation' on the right.
+
+.center[![](watson.gif)] 
+
+---
+class: middle, center, inverse
+#YOU DID IT! 
+
+---
+class: middle, center, inverse
+#Send me your gifs and I'll put them on the Digital Women website! 
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
