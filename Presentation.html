@@ -91,7 +91,7 @@ class: inverse, center, middle
 ---
 class:inverse
 .left-column[
-##Windows
+#Windows
 ##Open up putty
 
 -In the 'hostname' box type: piname.student.iastate.edu
@@ -122,7 +122,9 @@ class:inverse
 ---
 class: inverse
 #One last thing. 
-##Open FileZilla
+.center[##Open FileZilla
+]
+
 Towards the top of the application window you should see:
 ![](filezilla.png)
 
@@ -152,10 +154,12 @@ raspistill -o test.jpg
 Drag 'test.jpg' to your Computer's Desktop to transfer the image!
 
 ---
-class: inverse
+class: center, middle, inverse
 #Awesome, what else can we do? 
-##From the terminal, we can control our camera just like any physical camera. 
-.center[###Let's add an image effect
+##From the terminal, we can control our camera just like any physical camera.
+---
+class: inverse 
+.center[#Let's add an image effect
 ]
 ```bash
 raspistill -o test.jpg -ifx -posterise
@@ -201,10 +205,11 @@ python test.py
 Once the prompt returns, you can go to FileZilla to transfer and view the image we took! 
 
 ---
-class: inverse
-#We can also add image effects, change the resolution, and more! 
-
-##Let's choose an image effect to add to our image. 
+class: center, middle, inverse
+#We can also add image effects, change the resolution, and more!
+---
+class: inverse 
+#Let's choose an image effect to add to our image. 
 You can find the image effect documentation [here](https://picamera.readthedocs.org/en/release-1.9/api.html#picamera.PiCamera.image_effect).
 
 ``` python
@@ -227,9 +232,11 @@ camera.close()
 ```
 
 ---
-class: inverse
+class: center, middle, inverse
 #Now that we've experimented a little bit, let's take a sequence of images. 
-To do so we're going to use the capture_continuous method and put all of the images into an online gif maker. 
+---
+class: inverse
+##To do so we're going to use the capture_continuous method and put all of the images into an online gif maker. 
 
 Create a new python file called 'timelapse.py'. 
 ```Python
@@ -249,16 +256,18 @@ time.sleep(1) # Camera warm-up time
             break
 ```
 Whitespace in python is VERY IMPORTANT. Don't add any extra spaces or your code will not work.
+---
+class: center, inverse, middle
+#Let's put everything into a gif! 
 
 ---
 class: inverse
-#Let's put everything into a gif! 
 
-- First, transfer your images from the pi to the camera.
+###First, transfer your images from the pi to the camera.
 
-- Open up gifmaker.me in your browser and upload your images. 
+###Open up gifmaker.me in your browser and upload your images. 
 
-- Once uploaded, click 'create gif animation' on the right.
+###Once uploaded, click 'create gif animation' on the right.
 
 .center[![](watson.gif)] 
 
