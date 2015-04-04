@@ -24,6 +24,6 @@ Here are some useful links:
 - [Raspberry Pi Website](http://www.raspberrypi.org/)
 	- You will be able to find documentation for the Raspberry Pi and Raspberry Pi camera here. If you choose to get your own pi, READ THIS. 
 	 
--[Raspberry Pi Camera Documentation](http://www.raspberrypi.org/documentation/raspbian/applications/camera.md)
+- [Raspberry Pi Camera Documentation](http://www.raspberrypi.org/documentation/raspbian/applications/camera.md)
 
 - [PiCamera Documentation](https://picamera.readthedocs.org/en/release-1.10/)
